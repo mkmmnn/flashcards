@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+
+const Main = styled.main`
+  display: grid;
+  margin: 16px;
+  border: 3px solid black;
+  padding: 8px;
+`;
+
+const Heading = styled.h1`
+  margin: 0;
+  font-size: 24px;
+  line-height: 28px;
+  font-family: helvetica;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main>
+      <Heading>flashcards</Heading>
+    </Main>
   );
 }
 
