@@ -30,7 +30,7 @@ const App = () => {
         <Header>flashcards</Header>
       </SectionWrapper>
       {decks.map((deck) => (
-        <SectionWrapper>
+        <SectionWrapper key={deck}>
           <Deck deck={deck}></Deck>
         </SectionWrapper>
       ))}

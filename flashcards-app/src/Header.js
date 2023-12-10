@@ -8,7 +8,7 @@ const Heading = styled.h1`
   overflow-wrap: anywhere;
   padding: 8px;
   &:hover {
-    background-color: #ff4601;
+    background-color: #ee2d01;
   }
 `;
 

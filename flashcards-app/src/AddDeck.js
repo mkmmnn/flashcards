@@ -24,9 +24,11 @@ const AddButton = styled.button`
   flex-shrink: 0;
   &:focus {
     background-color: #f4dd8c;
+    cursor: pointer;
   }
   &:hover {
     background-color: #f4dd8c;
+    cursor: pointer;
   }
 `;
 
@@ -38,10 +40,15 @@ const NewDeckInput = styled.input`
   font-family: helvetica;
   padding: 8px;
   width: 100%;
+  &:focus {
+    background-color: #f4dd8c;
+  }
+  &:hover {
+    background-color: #f4dd8c;
+  }
 `;
 
 const AddDeck = ({ decks, setDecks }) => {
-  console.log({ setDecks });
   const [currDeckName, setCurrDeckName] = useState("");
   const handleNewDeck = (event) => {
     event.preventDefault();
