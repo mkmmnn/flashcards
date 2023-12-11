@@ -23,7 +23,7 @@ const SectionWrapper = styled.div`
 `;
 
 const App = () => {
-  const [decks, setDecks] = useState([]);
+  const [decks, setDecks] = useState(["french"]);
   return (
     <Main>
       <SectionWrapper>

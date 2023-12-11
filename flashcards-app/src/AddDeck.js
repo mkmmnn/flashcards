@@ -23,11 +23,11 @@ const AddButton = styled.button`
   border-left: 3px solid black;
   flex-shrink: 0;
   &:focus {
-    background-color: #f4dd8c;
+    background-color: #a6b536;
     cursor: pointer;
   }
   &:hover {
-    background-color: #f4dd8c;
+    background-color: #a6b536;
     cursor: pointer;
   }
 `;

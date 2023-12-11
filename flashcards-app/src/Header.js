@@ -5,6 +5,8 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: end;
   padding: 8px;
+  flex-wrap: wrap;
+  gap: 4px;
   &:hover {
     background-color: #ff4000;
   }
