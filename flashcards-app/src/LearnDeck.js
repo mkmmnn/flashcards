@@ -92,11 +92,8 @@ const LearnDeck = ({ cards }) => {
   const [status, setStatus] = useState("guess"); // 'guess' | 'success' | 'failure' | 'complete'
   const [remainingCards, setRemainingCards] = useState(cards);
   const [completedCards, setCompletedCards] = useState([]);
-  const [currentCard, setCurrentCard] = useState(
-    cards[Math.floor(Math.random() * cards.length)]
-  ); // tuple [front, back]
+  const [currentCard, setCurrentCard] = useState(cards[cards.length - 1]); // tuple [front, back]
   const [currentGuess, setCurrentGuess] = useState("");
-
   const handleGuess = (event) => {
     event.preventDefault();
     const nextCompletedCards = [...completedCards];
@@ -115,7 +112,7 @@ const LearnDeck = ({ cards }) => {
   const handleRefresh = () => {
     setRemainingCards(cards);
     setCompletedCards([]);
-    setCurrentCard(cards[Math.floor(Math.random() * cards.length)]);
+    setCurrentCard(cards[cards.length - 1]);
     setStatus("guess");
   };
 
@@ -127,9 +124,7 @@ const LearnDeck = ({ cards }) => {
           setCurrentCard("");
         } else {
           setStatus("guess");
-          setCurrentCard(
-            remainingCards[Math.floor(Math.random() * remainingCards.length)]
-          );
+          setCurrentCard(remainingCards[remainingCards.length - 1]);
         }
       }, 500);
       return () => {

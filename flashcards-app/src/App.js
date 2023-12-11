@@ -3,6 +3,7 @@ import Deck from "./Deck";
 import AddDeck from "./AddDeck";
 import Header from "./Header";
 import { useState } from "react";
+import data from "./data.json";
 
 const Main = styled.main`
   display: flex;
@@ -23,7 +24,7 @@ const SectionWrapper = styled.div`
 `;
 
 const App = () => {
-  const [decks, setDecks] = useState(["french"]);
+  const [decks, setDecks] = useState(data);
   return (
     <Main>
       <SectionWrapper>

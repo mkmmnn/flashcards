@@ -56,6 +56,9 @@ const DeckContents = styled.div`
 `;
 
 const Deck = ({ deck }) => {
+  const [deckName] = Object.keys(deck);
+  const [deckCards] = Object.values(deck);
+  console.log({ deckCards });
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState("learn");
 
@@ -63,11 +66,11 @@ const Deck = ({ deck }) => {
     <DeckWrapper>
       {isExpanded ? (
         <ExpandedDeckHeading onClick={() => setIsExpanded(!isExpanded)}>
-          {deck}
+          {deckName}
         </ExpandedDeckHeading>
       ) : (
         <DeckHeading onClick={() => setIsExpanded(!isExpanded)}>
-          {deck}
+          {deckName}
         </DeckHeading>
       )}
 
@@ -88,7 +91,7 @@ const Deck = ({ deck }) => {
             </ToggleOption>
           </ModeToggle>
           {mode === "learn" ? (
-            <LearnDeck cards={[["je t'aime", "i love you"]]}></LearnDeck>
+            <LearnDeck cards={deckCards}></LearnDeck>
           ) : (
             <div>create</div>
           )}
