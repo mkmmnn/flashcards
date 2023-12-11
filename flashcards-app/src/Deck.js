@@ -25,18 +25,16 @@ const ModeToggle = styled.div`
   width: 100%;
   border-bottom: 3px solid black;
   display: flex;
-  padding: 0px;
+  height: 30px;
 `;
 
 const ToggleOption = styled.button`
   border: none;
   background: none;
   font-size: 20px;
-  line-height: 28px;
   flex-grow: 1;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   &:nth-last-child(1) {
     border-left: 3px solid black;
@@ -56,9 +54,69 @@ const DeckContents = styled.div`
   border-left: 3px solid black;
 `;
 
+const CurrentCard = styled.div`
+  width: 100%;
+  height: 188px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-family: helvetica;
+  font-size: 32px;
+`;
+
+const GuessForm = styled.form`
+  border-top: 3px solid black;
+  width: 100%;
+  display: flex;
+  height: 30px;
+`;
+
+const GuessInput = styled.input`
+  border: none;
+  text-align: right;
+  font-size: 20px;
+  padding: 0 8px;
+  width: 100%;
+  &:focus {
+    background-color: #bad5ee;
+  }
+  &:hover {
+    background-color: #bad5ee;
+  }
+`;
+
+const SubmitGuessButton = styled.button`
+  font-family: helvetica;
+  font-weight: bold;
+  font-size: 20px;
+  background: none;
+  border: none;
+  border-left: 3px solid black;
+  text-align: right;
+  &:focus {
+    background-color: #bad5ee;
+    cursor: pointer;
+  }
+  &:hover {
+    background-color: #bad5ee;
+    cursor: pointer;
+  }
+`;
+
 const Deck = ({ deck }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState("learn");
+  const [currentCard, setCurrentCard] = useState({ "je t'aime": "i love you" });
+  const [currentGuess, setCurrentGuess] = useState("");
+
+  const handleGuess = (event) => {
+    event.preventDefault();
+    if (currentGuess === Object.values(currentCard)[0]) {
+      console.log("success");
+      // pull new card from deck
+      setCurrentGuess("");
+    }
+  };
   return (
     <DeckWrapper>
       {isExpanded ? (
@@ -82,12 +140,26 @@ const Deck = ({ deck }) => {
             </ToggleOption>
             <ToggleOption
               onClick={() => setMode("create")}
-              style={mode === "create" ? { backgroundColor: "#f4dd8c" } : {}}
+              style={mode === "create" ? { backgroundColor: "#a6b536" } : {}}
             >
               create
             </ToggleOption>
           </ModeToggle>
-          <div style={{ height: "200px" }}></div>
+          {mode === "learn" ? (
+            <>
+              <CurrentCard>{Object.keys(currentCard)[0]}</CurrentCard>
+              <GuessForm onSubmit={handleGuess}>
+                <GuessInput
+                  placeholder={"guess"}
+                  value={currentGuess}
+                  onChange={(e) => setCurrentGuess(e.target.value)}
+                ></GuessInput>
+                <SubmitGuessButton type="submit">submit</SubmitGuessButton>
+              </GuessForm>
+            </>
+          ) : (
+            <div>create</div>
+          )}
         </DeckContents>
       )}
     </DeckWrapper>

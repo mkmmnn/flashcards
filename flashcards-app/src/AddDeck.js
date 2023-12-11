@@ -66,7 +66,7 @@ const AddDeck = ({ decks, setDecks }) => {
         required
         min={0}
       ></NewDeckInput>
-      <AddButton type={"submit"}>new deck</AddButton>
+      <AddButton type="submit">new deck</AddButton>
     </DeckAdderWrapper>
   );
 };
