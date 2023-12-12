@@ -12,6 +12,7 @@ const DeckHeading = styled.button`
   font-family: helvetica;
   border: none;
   text-align: left;
+  word-wrap: break-word;
   width: 100%;
   &:hover {
     cursor: pointer;
@@ -62,6 +63,26 @@ const Deck = ({ deck }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState("learn");
 
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  }
+
   return (
     <DeckWrapper>
       {isExpanded ? (
@@ -91,7 +112,7 @@ const Deck = ({ deck }) => {
             </ToggleOption>
           </ModeToggle>
           {mode === "learn" ? (
-            <LearnDeck cards={deckCards}></LearnDeck>
+            <LearnDeck cards={shuffle(deckCards)}></LearnDeck>
           ) : (
             <div>create</div>
           )}
