@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
+import DeckModeToggle from "./DeckModeToggle";
 import LearnDeck from "./LearnDeck";
 import EmptyDeck from "./EmptyDeck";
-
-const DeckWrapper = styled.div``;
 
 const DeckHeading = styled.button`
   background: none;
@@ -24,29 +23,6 @@ const DeckHeading = styled.button`
   }
 `;
 
-const ModeToggle = styled.div`
-  width: 100%;
-  border-bottom: 3px solid black;
-  display: flex;
-  height: 30px;
-`;
-
-const ToggleOption = styled.button`
-  border: none;
-  background: none;
-  font-size: 20px;
-  flex-grow: 1;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  &:nth-last-child(1) {
-    border-left: 3px solid black;
-  }
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const ExpandedDeckHeading = styled(DeckHeading)`
   font-weight: bold;
   border-bottom: 3px solid black;
@@ -55,6 +31,9 @@ const ExpandedDeckHeading = styled(DeckHeading)`
 const DeckContents = styled.div`
   margin-left: 44px;
   border-left: 3px solid black;
+  min-height: 224px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Deck = ({ deck }) => {
@@ -79,7 +58,7 @@ const Deck = ({ deck }) => {
   }
 
   return (
-    <DeckWrapper>
+    <>
       {isExpanded ? (
         <ExpandedDeckHeading onClick={() => setIsExpanded(!isExpanded)}>
           {deckName}
@@ -91,38 +70,22 @@ const Deck = ({ deck }) => {
       )}
 
       {isExpanded && (
-        <DeckContents>
-          <ModeToggle>
-            <ToggleOption
-              onClick={() => setMode("learn")}
-              style={
-                mode === "learn" ? { backgroundColor: "var(--yellow)" } : {}
-              }
-            >
-              learn
-            </ToggleOption>
-
-            <ToggleOption
-              onClick={() => setMode("create")}
-              style={
-                mode === "create" ? { backgroundColor: "var(--green)" } : {}
-              }
-            >
-              create
-            </ToggleOption>
-          </ModeToggle>
-          {mode === "learn" ? (
-            deckCards.length > 0 ? (
-              <LearnDeck cards={shuffle(deckCards)}></LearnDeck>
+        <>
+          <DeckModeToggle mode={mode} setMode={setMode} />
+          <DeckContents>
+            {mode === "learn" ? (
+              deckCards.length > 0 ? (
+                <LearnDeck cards={shuffle(deckCards)}></LearnDeck>
+              ) : (
+                <EmptyDeck />
+              )
             ) : (
-              <EmptyDeck />
-            )
-          ) : (
-            <div>create</div>
-          )}
-        </DeckContents>
+              <div>create</div>
+            )}
+          </DeckContents>
+        </>
       )}
-    </DeckWrapper>
+    </>
   );
 };
 export default Deck;

@@ -281,5 +281,10 @@
       ["the saturday", "le samedi"],
       ["the sunday", "le dimanche"]
     ]
+  },
+  {
+    "id": 8,
+    "name": "test",
+    "cards": [["test", "test"]]
   }
 ]

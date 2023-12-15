@@ -1,22 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-
-const LearnDeckWrapper = styled.div`
-  min-height: 224px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Card = styled.div`
-  width: 100%;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  font-family: helvetica;
-  font-size: 32px;
-`;
+import Card from "./Card";
 
 const GuessForm = styled.form`
   border-top: 3px solid black;
@@ -56,29 +40,6 @@ const SubmitGuessButton = styled.button`
     background-color: var(--blue);
     cursor: pointer;
   }
-`;
-
-const SuccessCard = styled(Card)`
-  height: 221px;
-  background-color: var(--green);
-`;
-
-const FailureCard = styled.button`
-  border: none;
-  width: 100%;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  font-family: helvetica;
-  font-size: 32px;
-  height: 221px;
-  background-color: var(--red);
-`;
-
-const CompleteCard = styled(Card)`
-  background-color: var(--blue);
 `;
 
 const Refresh = styled.button`
@@ -142,6 +103,7 @@ const LearnDeck = ({ cards }) => {
     }
   };
 
+  // set timeout on success
   useEffect(() => {
     if (status === "success") {
       const intervalId = window.setInterval(() => {
@@ -161,7 +123,7 @@ const LearnDeck = ({ cards }) => {
   }, [status, remainingCards]);
 
   return (
-    <LearnDeckWrapper>
+    <>
       {status === "guess" ? (
         <>
           <Card>{currentCard[0]}</Card>
@@ -177,29 +139,30 @@ const LearnDeck = ({ cards }) => {
         </>
       ) : status === "success" ? (
         <>
-          <SuccessCard>good job!</SuccessCard>
+          <Card color={`var(--green)`}>good job!</Card>
         </>
       ) : status === "failure" ? (
-        <>
-          <FailureCard autoFocus onClick={handleDismissFailure}>
-            <div style={{ textAlign: "center" }}>{currentCard[0]}</div>
-            <div
-              style={{ textDecoration: "line-through", textAlign: "center" }}
-            >
-              {currentGuess}
-            </div>
-            <div style={{ textAlign: "center" }}>{currentCard[1]}</div>
-          </FailureCard>
-        </>
+        <Card
+          tagType={"button"}
+          color={`var(--red)`}
+          autoFocus
+          onClick={handleDismissFailure}
+        >
+          <div style={{ textAlign: "center" }}>{currentCard[0]}</div>
+          <div style={{ textDecoration: "line-through", textAlign: "center" }}>
+            {currentGuess}
+          </div>
+          <div style={{ textAlign: "center" }}>{currentCard[1]}</div>
+        </Card>
       ) : (
         <>
-          <CompleteCard>done!</CompleteCard>
+          <Card color={"var(--blue)"}>done!</Card>
           <Refresh autoFocus onClick={handleRefresh}>
             refresh
           </Refresh>
         </>
       )}
-    </LearnDeckWrapper>
+    </>
   );
 };
 
