@@ -3,6 +3,7 @@ import { useState } from "react";
 import DeckModeToggle from "./DeckModeToggle";
 import LearnDeck from "./LearnDeck";
 import EmptyDeck from "./EmptyDeck";
+import CreateDeck from "./CreateDeck";
 
 const DeckHeading = styled.button`
   background: none;
@@ -34,6 +35,7 @@ const DeckContents = styled.div`
   min-height: 224px;
   display: flex;
   flex-direction: column;
+  font-family: helvetica;
 `;
 
 const Deck = ({ deck }) => {
@@ -80,7 +82,7 @@ const Deck = ({ deck }) => {
                 <EmptyDeck />
               )
             ) : (
-              <div>create</div>
+              <CreateDeck cards={deckCards} />
             )}
           </DeckContents>
         </>
