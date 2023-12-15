@@ -1,6 +1,8 @@
 [
   {
-    "numbers": [
+    "id": 0,
+    "name": "numbers",
+    "cards": [
       ["zero", "zéro"],
       ["one", "un"],
       ["two", "deux"],
@@ -44,7 +46,9 @@
     ]
   },
   {
-    "questions": [
+    "id": 1,
+    "name": "questions",
+    "cards": [
       ["what", "que"],
       ["where", "où"],
       ["when", "quand"],
@@ -56,7 +60,9 @@
     ]
   },
   {
-    "-er verbs": [
+    "id": 2,
+    "name": "-er verbs",
+    "cards": [
       ["i arrive", "j'arrive"],
       ["you arrive", "tu arrives"],
       ["he arrives", "il arrive"],
@@ -90,7 +96,9 @@
     ]
   },
   {
-    "family": [
+    "id": 3,
+    "name": "family",
+    "cards": [
       ["the family", "la famille"],
       ["the parents", "les parents"],
       ["the husband", "le mari"],
@@ -132,7 +140,9 @@
     ]
   },
   {
-    "adjectives": [
+    "id": 4,
+    "name": "adjectives",
+    "cards": [
       ["easy", "facile"],
       ["difficult", "difficile"],
       ["strong", "fort"],
@@ -162,7 +172,9 @@
     ]
   },
   {
-    "food": [
+    "id": 5,
+    "name": "food",
+    "cards": [
       ["the meal", "le repas"],
       ["the breakfast", "le petit-déjeuner"],
       ["the dinner", "le dîner"],
@@ -174,7 +186,9 @@
     ]
   },
   {
-    "-ir verbs": [
+    "id": 6,
+    "name": "-ir verbs",
+    "cards": [
       ["i choose", "je choisis"],
       ["you choose", "tu choisis"],
       ["he chooses", "il choiset"],
@@ -234,7 +248,9 @@
     ]
   },
   {
-    "days, months, seasons": [
+    "id": 7,
+    "name": "days, months, seasons",
+    "cards": [
       ["january", "janvier"],
       ["february", "février"],
       ["march", "mars"],

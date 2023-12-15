@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const LearnDeckWrapper = styled.div`
   min-height: 224px;
@@ -32,10 +32,10 @@ const GuessInput = styled.input`
   padding: 0 8px;
   width: 100%;
   &:focus {
-    background-color: #bad5ee;
+    background-color: var(--blue);
   }
   &:hover {
-    background-color: #bad5ee;
+    background-color: var(--blue);
   }
 `;
 
@@ -49,18 +49,18 @@ const SubmitGuessButton = styled.button`
   text-align: right;
   padding: 0 8px;
   &:focus {
-    background-color: #bad5ee;
+    background-color: var(--blue);
     cursor: pointer;
   }
   &:hover {
-    background-color: #bad5ee;
+    background-color: var(--blue);
     cursor: pointer;
   }
 `;
 
 const SuccessCard = styled(Card)`
   height: 221px;
-  background-color: #a6b536;
+  background-color: var(--green);
 `;
 
 const FailureCard = styled.button`
@@ -74,11 +74,11 @@ const FailureCard = styled.button`
   font-family: helvetica;
   font-size: 32px;
   height: 221px;
-  background-color: #ff4000;
+  background-color: var(--red);
 `;
 
 const CompleteCard = styled(Card)`
-  background-color: #bad5ee;
+  background-color: var(--blue);
 `;
 
 const Refresh = styled.button`
@@ -93,7 +93,7 @@ const Refresh = styled.button`
   display: flex;
   flex-direction: row-reverse;
   &:hover {
-    background-color: #ff4000;
+    background-color: var(--red);
     cursor: pointer;
   }
 `;
@@ -107,7 +107,6 @@ const LearnDeck = ({ cards }) => {
   const [currentCard, setCurrentCard] = useState(cards[cards.length - 1]); // tuple [front, back]
   const [currentGuess, setCurrentGuess] = useState("");
 
-  const failureCardRef = useRef();
   const handleGuess = (event) => {
     event.preventDefault();
     const nextCompletedCards = [...completedCards];
@@ -136,7 +135,7 @@ const LearnDeck = ({ cards }) => {
     setCurrentGuess("");
     if (remainingCards.length === 0) {
       setStatus("complete");
-      setCurrentCard("");
+      setCurrentCard([]);
     } else {
       setStatus("guess");
       setCurrentCard(remainingCards[remainingCards.length - 1]);
@@ -182,11 +181,7 @@ const LearnDeck = ({ cards }) => {
         </>
       ) : status === "failure" ? (
         <>
-          <FailureCard
-            autoFocus
-            ref={failureCardRef}
-            onClick={handleDismissFailure}
-          >
+          <FailureCard autoFocus onClick={handleDismissFailure}>
             <div style={{ textAlign: "center" }}>{currentCard[0]}</div>
             <div
               style={{ textDecoration: "line-through", textAlign: "center" }}

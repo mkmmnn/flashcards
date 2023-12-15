@@ -7,7 +7,7 @@ const HeaderWrapper = styled.div`
   padding: 8px;
   flex-wrap: wrap;
   gap: 4px;
-  background-color: #ff4000;
+  background-color: var(--red);
 `;
 const Heading = styled.h1`
   margin: 0;

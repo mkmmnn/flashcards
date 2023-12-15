@@ -23,11 +23,11 @@ const AddButton = styled.button`
   border-left: 3px solid black;
   flex-shrink: 0;
   &:focus {
-    background-color: #a6b536;
+    background-color: var(--green);
     cursor: pointer;
   }
   &:hover {
-    background-color: #a6b536;
+    background-color: var(--green);
     cursor: pointer;
   }
 `;
@@ -41,10 +41,10 @@ const NewDeckInput = styled.input`
   padding: 8px;
   width: 100%;
   &:focus {
-    background-color: #f4dd8c;
+    background-color: var(--yellow);
   }
   &:hover {
-    background-color: #f4dd8c;
+    background-color: var(--yellow);
   }
 `;
 
@@ -53,7 +53,8 @@ const AddDeck = ({ decks, setDecks }) => {
   const handleNewDeck = (event) => {
     event.preventDefault();
     const nextDecks = [...decks];
-    nextDecks.push(currDeckName);
+    const newDeck = { id: decks.length + 1, name: currDeckName, cards: [] };
+    nextDecks.push(newDeck);
     setDecks(nextDecks);
     setCurrDeckName("");
   };

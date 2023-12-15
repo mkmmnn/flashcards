@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import LearnDeck from "./LearnDeck";
+import EmptyDeck from "./EmptyDeck";
 
 const DeckWrapper = styled.div``;
 
@@ -16,10 +17,10 @@ const DeckHeading = styled.button`
   width: 100%;
   &:hover {
     cursor: pointer;
-    background-color: #bad5ee;
+    background-color: var(--blue);
   }
   &:focus {
-    background-color: #bad5ee;
+    background-color: var(--blue);
   }
 `;
 
@@ -57,23 +58,17 @@ const DeckContents = styled.div`
 `;
 
 const Deck = ({ deck }) => {
-  const [deckName] = Object.keys(deck);
-  const [deckCards] = Object.values(deck);
-  console.log({ deckCards });
+  const deckName = deck.name;
+  const deckCards = deck.cards;
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState("learn");
 
   function shuffle(array) {
     let currentIndex = array.length,
       randomIndex;
-
-    // While there remain elements to shuffle.
     while (currentIndex > 0) {
-      // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
-      // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
         array[currentIndex],
@@ -100,19 +95,28 @@ const Deck = ({ deck }) => {
           <ModeToggle>
             <ToggleOption
               onClick={() => setMode("learn")}
-              style={mode === "learn" ? { backgroundColor: "#f4dd8c" } : {}}
+              style={
+                mode === "learn" ? { backgroundColor: "var(--yellow)" } : {}
+              }
             >
               learn
             </ToggleOption>
+
             <ToggleOption
               onClick={() => setMode("create")}
-              style={mode === "create" ? { backgroundColor: "#a6b536" } : {}}
+              style={
+                mode === "create" ? { backgroundColor: "var(--green)" } : {}
+              }
             >
               create
             </ToggleOption>
           </ModeToggle>
           {mode === "learn" ? (
-            <LearnDeck cards={shuffle(deckCards)}></LearnDeck>
+            deckCards.length > 0 ? (
+              <LearnDeck cards={shuffle(deckCards)}></LearnDeck>
+            ) : (
+              <EmptyDeck />
+            )
           ) : (
             <div>create</div>
           )}

@@ -31,7 +31,7 @@ const App = () => {
         <Header>flashcards</Header>
       </SectionWrapper>
       {decks.map((deck) => (
-        <SectionWrapper key={deck}>
+        <SectionWrapper key={deck.id}>
           <Deck deck={deck}></Deck>
         </SectionWrapper>
       ))}
