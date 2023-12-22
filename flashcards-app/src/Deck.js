@@ -40,7 +40,7 @@ const DeckContents = styled.div`
 
 const Deck = ({ deck }) => {
   const deckName = deck.name;
-  const deckCards = deck.cards;
+  const deckCards = deck.cards.map((card) => [card.front, card.back]);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mode, setMode] = useState("learn");
 
